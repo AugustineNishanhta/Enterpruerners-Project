@@ -1,0 +1,25 @@
+<!-- events-view.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Scheduled Events</title>
+</head>
+<body>
+  <h1>Scheduled Events</h1>
+  <% events.forEach(function(event) { %>
+    <div>
+      <h2><%= event.heading %></h2>
+      <p>Date: <%= event.date.toDateString() %></p>
+      <p>Time: <%= event.time %></p>
+      <p>Conducted By: <%= event.conductedBy %></p>
+      <p>Payment: $<%= event.payment %></p>
+      <!-- Display image if available -->
+      <% if (event.image) { %>
+        <img src="data:<%= event.image.contentType %>;base64,<%= event.image.data.toString('base64') %>" alt="Event Image" width="200" height="200">
+      <% } %>
+      <a href="/eventssapi/events/<%= event._id %>/to-edit">Edit Event</a> <!-- Added Edit Event button -->
+      <hr>
+    </div>
+  <% }) %>
+</body>
+</html>

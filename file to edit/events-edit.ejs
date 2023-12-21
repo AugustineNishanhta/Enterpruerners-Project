@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit-event</title>
+</head>
+<body>
+    <h1>Edit Event</h1>
+
+<form action="/eventssapi/events/<%= event._id %>" method="POST" enctype="multipart/form-data">
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" value="<%= event.date.toISOString().split('T')[0] %>">
+      <br>
+  
+      <label for="time">Time:</label>
+      <input type="time" id="time" name="time" value="<%= event.time %>">
+      <br>
+  
+      <label for="conductedBy">Conducted By:</label>
+      <input type="text" id="conductedBy" name="conductedBy" value="<%= event.conductedBy %>">
+      <br>
+  
+      <label for="heading">Heading:</label>
+      <input type="text" id="heading" name="heading" value="<%= event.heading %>">
+      <br>
+  
+      <label for="payment">Payment:</label>
+      <input type="number" id="payment" name="payment" value="<%= event.payment %>">
+      <br>
+  
+      <% if (event.image) { %>
+        <img src="data:<%= event.image.contentType %>;base64,<%= event.image.data.toString('base64') %>" alt="Event Image" width="200" height="200">
+        <br>
+      <% } %>
+  
+      <label for="image">Event Image:</label>
+      <input type="file" id="image" name="image">
+      <br>
+  
+      <button type="submit">Save</button>
+    </form>
+</body>
+</html>
