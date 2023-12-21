@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+  <meta charset ="UTF-8">
+  <meta http-equiv="X-UA Compatible" content = "IE=edge">
+  <meta name="viewport" content="width=device-width , initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <style>
+    .payment {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-weight: bold;
+    }
+
+    p {
+        font-weight: bold;
+        color: rgb(255, 0, 38);
+        font-size: 50;
+    }
+
+    
+</style>
+
+</head>
+<body>
+    <nav>
+        <div class ="logo-name">
+          <div class="logo-image"> 
+            <img src="../views/Images/profile.jpeg">
+    
+          </div>
+          <span class="logo_name"><b>AQCELLOR</b></span>
+    
+          </div>
+          <div class="menu-items">
+            <ul class="nav-links">
+              <li>
+                <a href="/adminapi">
+                  <i class="uil uil-estate"></i>
+                <span class="link-name">Dashboard</span>
+              </a>
+              </li>
+              <li>
+                <a href="/adminapi/adminview">
+                  <i class="uil uil-user-plus"></i>
+                <span class="link-name">Onboarding</span>
+              </a>
+              </li>
+              <li>
+                <div class="dropdown">
+                  <a href="" class="dropbtn">
+                    <i class="uil uil-book-open"></i>
+                    <span class="link-name">Accelerator Program</span>
+                  </a>
+                  <div class="dropdown-content">
+                    <a href="/programme/visit">Program Visit</a>
+                    <a href="/programme/view">Program View</a>
+                  </div>
+              </a>
+              </li>
+              
+                  <li>
+                    <div class="dropdown">
+                      <a href="" class="dropbtn">
+                       <i class="uil uil-schedule"></i>
+                        <span class="link-name">Event</span>
+                      </a>
+                      <div class="dropdown-content">
+                        <a href="/eventssapi">Schedule Event</a>
+                        
+                      </div>
+                  </a>
+                  </li>
+              </ul>
+          
+    
+            <ul class="logout-mode">
+            <li>
+              <a href="/logout">
+                <i class="uil uil-signout"></i>
+              <span class="link-name">Logout</span>
+            </a>
+            </li>
+            <li class="mode">
+              <a href="#">
+                <i class="uil uil-moon"></i>
+              <span class="link-name">Change Mode</span>
+            </a>
+            <div class="mode-toggle">
+            <span class="switch"></span>
+          </div>
+            </li>
+            </ul>
+          </div>
+      </nav>
+      <section class="dashboard">
+        <div class="top">
+          <i class="uil uil-bars sidebar-toggle"></i>
+    
+          <div class="search-box">
+            <i class="uil uil-search"></i>
+            <input type="text" placeholder="Search here">
+    
+          </div>
+          <img src="./Images/profile.jpeg" alt="">
+        </div>
+    
+        <div class="dash-content">
+          <div class="overview">
+            <div class="title">
+              <i class="uil uil-tachometer-fast-alt"></i>
+              <span class="text">Admin Dashboard</span>
+            </div>
+    
+        
+            <div class="boxes">
+              <div class="box box1">
+                <i class="uil uil-users-alt"></i>
+              <span class="text">Members</span>
+              <span class="number"><%= modelCount %></span>
+            </div>
+            <div class="box box2">
+              <i class="uil uil-book-open"></i>
+              <span class="text">Programmes</span>
+              <span class="number"><%= programCount %> </span>
+            </div>
+            <div class="box box3">
+              <i class="uil uil-meeting-board"></i>
+              <span class="text">Events</span>
+              <span class="number"><%= eventCount %> </span>
+            </div>
+          </div>
+        </div>
+        <div class="activity">
+          <div class="title">
+              <i class="uil uil-clock-three"></i>
+              <span class="text">Activity</span>
+          </div>
+          
+          <div class="event-container">
+            <% if (events && events.length > 0) { %>
+              <h3 class="year">Upcoming Events</h3>
+          
+              <% events.sort((a, b) => {
+                const dateDiff = new Date(b.date) - new Date(a.date);
+                if (dateDiff === 0) {
+                  return new Date(b.time) - new Date(a.time);
+                } else {
+                  return dateDiff;
+                }
+              }); %>
+          
+              <% events.forEach(function(event) { %>
+                <div class="event">
+                  <div class="event-left">
+                    <div class="event-date">
+                      <div class="date"><%= event.date.getDate() %></div>
+                      <div class="month"><%= event.date.toLocaleString('default', { month: 'short' }) %></div>
+                      <div class="years"><%= event.date.getFullYear() %></div>
+                      
+                    </div>
+                  </div>
+                  <div class="event-right">
+                    <h3 class="event-title"><%= event.heading %></h3>
+                    <div class="event-description">
+                      <%= event.conductedBy %>
+                    </div>
+                    <div class="event-timing">
+                      <i class="uil uil-clock"><span class="time"><%= event.time %></span></i>
+
+                      <div class="event-description" >
+                        <p >  Reservation seat price is  :Rs. <%= event.payment %> </p> 
+                    </div>
+                      <a href="/eventssapi/events/<%= event._id %>/to-edit">Edit Event</a>
+
+                      <form action="/eventssapi/events/to-delete/<%= event._id %>" method="POST" class="form-container">
+                      <button type="submit" class="form-links">Delete Event</button>
+                      </form>
+                    
+                          
+                    </div>
+                  </div>
+                </div>
+              <% }) %>
+          
+            <% } else { %>
+              <p>No events found.</p>
+            <% } %>
+          
+          </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>

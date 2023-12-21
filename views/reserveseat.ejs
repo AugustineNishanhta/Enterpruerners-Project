@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User panel Reserve Seat</title>
+  <style>
+*{
+    font-family:calibri;
+   
+}
+
+body {
+  background-color: #f0f8fF;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  color: #26A899;
+  padding-top: 30px;
+
+
+}
+
+form {
+  margin: 20px auto;
+  max-width: 400px;
+  background-color: #FFFFFF;
+  padding: 20px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  left:20px;
+  font-size:16px ;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+  color: #0C1629;
+  font-weight: bold;
+  font-size:16px ;
+}
+
+input[type="text"]
+ {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #E5AC23;
+  border-radius: 5px;
+  background-color: #DFD8CF;
+  color: #0C1629;
+  max-width: 340px;
+  font-size:16px ;
+  
+}
+
+input[type="number"]
+{
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #E5AC23;
+  border-radius: 5px;
+  background-color: #DFD8CF;
+  color: #0C1629;
+  max-width: 100px;
+  font-size:16px ;
+}
+
+input[type="text"]:read-only,
+input[type="number"]:read-only {
+  background-color: #0C1629;
+  color: #DFD8CF;
+   max-width: 340px;
+}
+
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  margin-top: 10px;
+  background-color: #26A899;
+  color: #0C1629;
+  border: 1px solid #0C1629;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size:16px ;
+}
+
+button[type="submit"]:hover {
+  background-color: #0C1629;
+  color: #FFFFFF;
+  font-size:16px ;
+  max-width: fit-content;
+}
+
+
+.new .button1[type="submit"] {
+  max-width: fit-content;
+  margin-top: 10px;
+  background-color: #CF1F29;
+  color: #FFFFFF;
+  border: 1px solid #E5AC23;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size:16px ;
+}
+
+
+
+
+
+
+
+
+  </style>
+</head>
+<body>
+   
+  <h1><center>Reserve Your Seat!</center></h1>
+  <form action="/eventssapi/bookseat" method="POST">
+    <input type="hidden" name="eventId" value="<%= event._id %>">
+    <input type="hidden" name="eventHeading" value="<%= event.heading %>">
+    <input type="hidden" name="eventDate" value="<%= event.date %>">
+    <input type="hidden" name="eventConductedBy" value="<%= event.conductedBy %>">
+    <input type="hidden" name="eventTime" value="<%= event.time %>">
+    <input type="hidden" name="eventPayment" value="<%= event.payment %>">
+
+    <label for="eventHeading">Event Name:</label>
+    <input type="text" id="eventHeading" value="<%= event.heading %>" readonly><br>
+
+    <label for="eventDate">Event Date:</label>
+    <input type="text" id="eventDate" value="<%= event.date %>" readonly><br>
+
+    <label for="eventConductedBy">Conducted By:</label>
+    <input type="text" id="eventConductedBy" value="<%= event.conductedBy %>" readonly><br>
+
+    <label for="eventTime">Time:</label>
+    <input type="text" id="eventTime" value="<%= event.time %>" readonly><br>
+
+    <label for="eventPayment">Payment:</label>
+    <input type="text" id="eventPayment" value="<%= event.payment %>" readonly><br>
+
+    <div class="new">
+      <label for="seatCount">Seat Count:</label>
+      <span>
+        <input type="number" id="seatCount" name="seatCount" value="1" readonly >    
+      </span>
+    </div>
+    <br>
+    
+
+    <label for="reservationHolder">Attendee Name:</label>
+    <input type="text" id="reservationHolder" name="reservationHolder" required><br>
+
+    <button type="submit">Reserve Now</button>
+  </form>
+</body>
+</html>
