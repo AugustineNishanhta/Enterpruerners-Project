@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp Form - MongoDB</title>
+	 <link rel="stylesheet" href="Newstyle.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  
+
+<style>
+  
+        .form-section {
+            display: none;
+        }
+        .form-section.active {
+            display: block;
+        }
+    
+
+    body {
+        font-family: 'Poppins', sans-serif;
+	background-color:#cae7d3;
+    }
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    
+    table td {
+        padding: 8px;
+    }
+
+h2{
+
+	color:navy;
+}
+</style>
+</head>
+
+<body>
+
+
+ <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="./Images/logo.png" alt="">
+            </div>
+   <span class="logo_name">AQCELLOR</span>
+        </div>
+</nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-6 main">
+
+            
+                <form action="/register" method="POST">
+                    <h2><center><b>Registration Form</b></center></h2>
+                    <table width="100%">
+                        <tr>
+                            <td><label for="firstName">Your Full Name:</label></td>
+                            <td><input type="text" class="box" id="Name" name="Name"  required /></td>
+                            
+                        </tr>
+                        <tr>
+                            <td><label for="firstName">Your Future Roll:</label></td>
+                            <td><input type="text" class="box" id="Roll" name="Roll"  required /></td>
+                        </tr>
+                        <tr>
+                            <td><label for="firstName">Email address:</label></td>
+                            <td><input type="text" class="box" id="email" name="email" placeholder="@gmail.com" required /></td>
+                        
+                        </tr>
+                        <tr>
+                            <td><label for="firstName">Your Address:</label></td>
+                            <td><input type="text" class="box" id="Address" name="Address" placeholder="Address" required /></td>
+                        </tr>
+                        <tr>
+                            <td><label for="businessIdea">Do you have a business idea or currently running a business?</label></td>
+                            <td>
+                                <input type="radio" id="yesBusinessIdea" name="businessIdea" value="yes" required />
+                                <label for="yesBusinessIdea">Yes</label>
+                                <input type="radio" id="noBusinessIdea" name="businessIdea" value="no" required />
+                                <label for="noBusinessIdea">No</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="firstName">What type of business you are interested :</label></td>
+                            <td><input type="text" class="box" id="Businesstype" name="Businesstype" placeholder="Businesstype" required /></td>
+                        </tr>
+                        
+                        <tr>
+                            <td><label for="productDescription">Can you describe your Business plan?</label></td>
+                            <td><textarea class="box" id="business" name="business" rows="3" placeholder="E.g. text placeholder&#10;You can add new line" required></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><label for="uniqueBusiness">What is unique about your business ?</label></td>
+                            <td><textarea class="box" id="uniqueBusiness" name="uniqueBusiness" rows="3" placeholder="E.g. text placeholder&#10;You can add new line" required></textarea></td>
+                        </tr>
+                        <tr>
+                            <td><label for="resourcesNeeded">What resources do you need to achieve your goals ? </label></td>
+                            <td><textarea class="box" id="resourcesNeeded" name="resourcesNeeded" rows="3"  placeholder="E.g. text placeholder&#10;You can add new line" ></textarea></td>
+                        </tr>
+                        <tr>
+                                <td><center><input type="submit" value="Submit" id="submit" /></center></td>
+                        </tr>
+                    
+
+                    </table>
+                </form>
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
